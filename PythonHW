@@ -1,0 +1,26 @@
+import pandas as pd
+first_df = pd.read_csv('budget_data_1.csv')
+first_df.shape
+first_df.head(42)
+second_df = pd.read_csv('budget_data_2.csv')
+second_df.shape
+second_df.head(86)
+joint_df = first_df.append([first_df, second_df])
+joint_df.shape
+joint_df.head(20)
+joint_df.count
+joint_df.sum()
+joint_df['Shifted'] = joint_df['Revenue'].shift(1)
+joint_df.head(3)
+joint_df['Difference'] = joint_df['Revenue'] - joint_df['Shifted']
+joint_df['Difference'] = joint_df['Difference'].abs()
+joint_df.head(10)
+fin_analysis = 'Financial Analysis' +
+        '---------------------------------' +
+        'Total Months:' + joint_df.count['Date']
+        'Total Revenue:' + joint_df.sum['Revenue']
+        'Average Revenue Change:' + average = joint_df['Difference'].mean()
+        'Greatest Increase in Revenue:' + maximum = joint_df['Difference'].max()
+        'Greatest Decreae in Revenue:' + minimum = joint_df['Difference'].min()
+
+print(fin_analysis)
